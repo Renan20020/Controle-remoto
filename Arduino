@@ -1,48 +1,20 @@
 // Guia do Arduino 
 // Teste de Controle Remoto 
 
-const int entradaSensor = A0; // Entrada Analogico da Leitura do fototransitor 
-const int led1 = 13;  // Led Vermelho a porta 13
-int sensor = 0;  // Leitura do sensor
-int conta = 0; // Faz a contagem para incrementar.
+int Tempo = 0;
 
-// Preparação do Arduino, este código irá rodar uma única vez
-void setup() {
-
-  // Inicialia a cominicação serial, para poder ver os resultados.
-  Serial.begin(9600);
-
-  // Seta os Pinos e o Modo deles (Output, neste caso)
-  pinMode (led1, OUTPUT);
-
+void setup()
+{
+  pinMode(2, INPUT);
+  pinMode(10, OUTPUT);
 }
 
-void loop() {
-
-  // Faz a leitura da entrada Analogica (Fototransitor)
-  sensor = analogRead(entradaSensor);
-
-  Serial.print("Sensor = ");
-  Serial.print(sensor);
-  Serial.print("  Contador = ");
-  Serial.print(conta);
-  Serial.println(" ");
-
-  if(sensor < 900) {  // Ao Interromper o entre os (incolor e o Preto), ele conta
-    conta = conta+1;
-  } 
-  if(conta == 0) {
-    digitalWrite(led1, LOW); /// Permanece apagado
-  } else if (conta == 1) {
-    digitalWrite(led1, HIGH); // Acende o primeiro LED (Vermelho)
-  } else if (conta == 2) {
-    digitalWrite(led1, LOW);  ///  Permanercia desligado
-  } else if (conta == 3) {
-    digitalWrite(led1, LOW);  ///  Permanencia  desligado
+void loop()
+{
+  if (digitalRead(2) == HIGH) {
+    digitalWrite(10, HIGH);
   } else {
-    digitalWrite(led1, LOW); /// Permanece apagado novamente
-    conta = 0;
+    digitalWrite(10, LOW);
   }
-
-  delay(2000);
+  delay(10); // Delay a little bit to improve simulation performance
 }
