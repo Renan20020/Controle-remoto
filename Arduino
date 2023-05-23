@@ -1,10 +1,8 @@
 // Guia do Arduino 
-// Teste de Controle Remoto utilizando fototransitor e leds
+// Teste de Controle Remoto 
 
 const int entradaSensor = A0; // Entrada Analogico da Leitura do fototransitor 
 const int led1 = 13;  // Led Vermelho a porta 13
-const int led2 = 12;  // Led Amarelo a porta 12
-const int led3 = 11;  // Led Verde a porta 11
 int sensor = 0;  // Leitura do sensor
 int conta = 0; // Faz a contagem para incrementar.
 
@@ -16,8 +14,6 @@ void setup() {
 
   // Seta os Pinos e o Modo deles (Output, neste caso)
   pinMode (led1, OUTPUT);
-  pinMode (led2, OUTPUT);
-  pinMode (led3, OUTPUT);
 
 }
 
@@ -37,24 +33,14 @@ void loop() {
   } 
   if(conta == 0) {
     digitalWrite(led1, LOW); /// Permanece apagado
-    digitalWrite(led2, LOW); 
-    digitalWrite(led3, LOW);
   } else if (conta == 1) {
     digitalWrite(led1, HIGH); // Acende o primeiro LED (Vermelho)
-    digitalWrite(led2, LOW);
-    digitalWrite(led3, LOW);
   } else if (conta == 2) {
-    digitalWrite(led1, LOW); 
-    digitalWrite(led2, HIGH); // Acende o segundo LED (Amarelo)
-    digitalWrite(led3, LOW);
+    digitalWrite(led1, LOW);  ///  Permanercia desligado
   } else if (conta == 3) {
-    digitalWrite(led1, LOW); 
-    digitalWrite(led2, LOW); 
-    digitalWrite(led3, HIGH); // Acende o terceiro LED (Terceiro)
+    digitalWrite(led1, LOW);  ///  Permanencia  desligado
   } else {
     digitalWrite(led1, LOW); /// Permanece apagado novamente
-    digitalWrite(led2, LOW); 
-    digitalWrite(led3, LOW);
     conta = 0;
   }
 
